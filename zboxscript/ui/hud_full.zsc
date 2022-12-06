@@ -1,0 +1,64 @@
+//zboxscript/ui/hud_full.zsc
+
+//adds extra functions to the box party hud.
+
+class BoxPartyStatusBarFull : BoxPartyStatusBar replaces BoxPartyStatusBar
+{
+	const EnergyMax = 160;
+
+	override void BoxInterpolate()
+	{
+		Super.BoxInterpolate();
+		BoxEnergyInterpolator.Update(GetAmount("BoxEnergy"));
+		BoxPowerInterpolator.Update(GetAmount("BoxPower"));
+	}
+	
+	override void DrawTrioBar()
+	{
+		DrawBar(HPBar1[CurrentPlayer], HPBar2[CurrentPlayer], BoxHealthInterpolator.GetValue(), 30, GlobalOffset + (-70, -32), 0, SHADER_REVERSE, DI_ITEM_OFFSETS);
+		DrawBar("graphics/TRIBARD.png", "graphics/TRIBARC.png", (BoxHealthInterpolator.GetValue() - 30), 30, GlobalOffset + (-104, -32), 0, SHADER_REVERSE, DI_ITEM_OFFSETS);
+		DrawBar("graphics/TRIBARF.png", "graphics/TRIBARE.png", (BoxHealthInterpolator.GetValue() - 60), 30, GlobalOffset + (-138, -32), 0, SHADER_REVERSE, DI_ITEM_OFFSETS);
+		if (cplayer.health < 90)
+		{
+			DrawImage("graphics/TRIBARI.png", GlobalOffset + (-138, -32), DI_ITEM_OFFSETS);
+			if (cplayer.health < 60)
+			{
+				DrawImage("graphics/TRIBARH.png", GlobalOffset + (-104, -32), DI_ITEM_OFFSETS);
+				if (cplayer.health <= 0) {DrawImage("graphics/TRIBARG.png", GlobalOffset + (-70, -32), DI_ITEM_OFFSETS);}
+			}
+		}
+	}
+	
+	override void DrawPrismBar()
+	{
+		DrawBar("graphics/PRIBARD.png", "graphics/PRIBARC.png", BoxEnergyInterpolator.GetValue(), EnergyMax, GlobalOffset + (-158, -56), 0, SHADER_REVERSE, DI_ITEM_OFFSETS);
+		if (GetAmount("BoxEnergy") == EnergyMax)
+		{
+			DrawImage("graphics/PRIBARE.png", GlobalOffset + (-158, -56), DI_ITEM_OFFSETS);
+		}
+		DrawString(NumberFont, FormatNumber(GetAmount("BoxEnergy"), 0), GlobalOffset + (-48, -50), DI_ITEM_OFFSETS|DI_TEXT_ALIGN_RIGHT, Font.CR_GREEN);
+		DrawImage("sprites/loot/energy/PNRGB0.png", GlobalOffset + (-24, -36), DI_ITEM_OFFSETS);
+	}
+	
+	override void DrawGlassBar()
+	{
+		DrawBar(HPBar1[CurrentPlayer], HPBar2[CurrentPlayer], BoxPowerInterpolator.GetValue(), 20, GlobalOffset + PrismOffset + (-104, -32), 0, SHADER_REVERSE, DI_ITEM_OFFSETS);
+		DrawBar("graphics/GLABARD.png", "graphics/GLABARC.png", (BoxPowerInterpolator.GetValue() - 20), 20, GlobalOffset + (-172, -32), 0, SHADER_REVERSE, DI_ITEM_OFFSETS);
+		DrawString(NumberFont, FormatNumber(GetAmount("BoxPower")), GlobalOffset + (-48, -24), DI_ITEM_OFFSETS|DI_TEXT_ALIGN_RIGHT, Font.CR_BLACK);
+		if (GetAmount("BoxPower") >= 20)
+		{
+			DrawImage("graphics/GLABARE.png", GlobalOffset + (-104, -32), DI_ITEM_OFFSETS);
+			if (GetAmount("BoxPower") >= 40)
+			{
+				DrawImage("graphics/GLABARF.png", GlobalOffset + (-172, -32), DI_ITEM_OFFSETS);
+			}
+		}
+	}
+	
+	override void Draw(int state, double TicFrac)
+	{
+		if (CheckWeaponSelected("PrismWeapon")) {HideAmmo1 = true;} else {HideAmmo1 = false;}
+		
+		Super.Draw(state, TicFrac);
+	}
+}

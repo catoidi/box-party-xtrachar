@@ -1,0 +1,6 @@
+>>Player = PlayerBoxToken, FAC, 0, HUDBARB.png, HUDBARA.png;
+>>Player = PlayerCircleToken, CAC, 0, HUDBARC.png, HUDBARA.png;
+>>Player = PlayerTriangleToken, TAC, 24, HUDBARD.png, HUDBARA.png;
+Player = PlayerTrioToken, 3AC, 0, TRIBARB.png, TRIBARA.png;
+Player = PlayerPrismToken, RAC, 24, PRIBARB.png, PRIBARA.png;
+Player = PlayerGlassToken, GAC, 0, GLABARB.png, GLABARA.png;

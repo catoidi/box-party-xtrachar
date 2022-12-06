@@ -1,0 +1,154 @@
+//zboxscript/loot/energy.zsc
+
+//this is used by Prism.
+
+CLASS BoxEnergy : Ammo
+{
+	mixin BoxLootBase;
+	
+	Default
+	{
+		Height 24;
+		Radius 20;
+		Inventory.Amount 0;
+		Inventory.MaxAmount 160;
+		Inventory.RestrictedTo "PlayerPrism";
+		//Inventory.InterHubAmount 0;
+		+INVENTORY.UNCLEARABLE;
+	}
+	
+	override void BeginPlay (void)
+	{
+		Super.BeginPlay();
+		SpriteName = "PNRG";
+		ParticleColor = "b7 7a ce";
+	}
+	
+	States
+	{
+		Dummy:
+			PNRG A 0; //this is needed or "GetSpriteIndex" will mess up.
+			Stop; //this state is never called by the health actor.
+	}
+}
+
+CLASS PureEnergy : BoxEnergy
+{
+	Default
+	{
+		Inventory.Amount 10;
+		Inventory.PickupMessage "$BOX_ENERGY_PURE";
+	}
+	
+	override void BeginPlay (void)
+	{
+		Super.BeginPlay();
+		SpriteNum = 13;
+	}
+}
+
+CLASS MelonEnergy : BoxEnergy
+{
+	Default
+	{
+		Inventory.Amount 3;
+		Inventory.PickupMessage "$BOX_ENERGY_MELON";
+	}
+	
+	override void BeginPlay (void)
+	{
+		Super.BeginPlay();
+		SpriteNum = 1;
+	}
+}
+
+CLASS PizzaEnergy : BoxEnergy
+{
+	Default
+	{
+		Inventory.Amount 1;
+		Inventory.PickupMessage "$BOX_ENERGY_PIZZA";
+	}
+	
+	override void BeginPlay (void)
+	{
+		Super.BeginPlay();
+		SpriteNum = 2;
+	}
+}
+
+CLASS OnionEnergy : BoxEnergy
+{
+	Default
+	{
+		Inventory.Amount 4;
+		Inventory.PickupMessage "$BOX_ENERGY_ONION";
+	}
+	
+	override void BeginPlay (void)
+	{
+		Super.BeginPlay();
+		SpriteNum = 3;
+	}
+}
+
+CLASS RedOnionEnergy : BoxEnergy
+{
+	Default
+	{
+		Scale 0.5;
+		Inventory.Amount 2;
+		Inventory.PickupMessage "$BOX_ENERGY_REDONION";
+	}
+	
+	override void BeginPlay (void)
+	{
+		Super.BeginPlay();
+		SpriteNum = 3;
+	}
+}
+
+CLASS LemonEnergy : BoxEnergy
+{
+	Default
+	{
+		Inventory.Amount 4;
+		Inventory.PickupMessage "$BOX_ENERGY_LEMON";
+	}
+	
+	override void BeginPlay (void)
+	{
+		Super.BeginPlay();
+		SpriteNum = 4;
+	}
+}
+
+CLASS HammerEnergy : BoxEnergy
+{
+	Default
+	{
+		Inventory.Amount 5;
+		Inventory.PickupMessage "$BOX_ENERGY_HAMMER";
+	}
+	
+	override void BeginPlay (void)
+	{
+		Super.BeginPlay();
+		SpriteNum = 5;
+	}
+}
+
+CLASS PepperEnergy : BoxEnergy
+{
+	Default
+	{
+		Inventory.Amount 5;
+		Inventory.PickupMessage "$BOX_ENERGY_PEPPER";
+	}
+	
+	override void BeginPlay (void)
+	{
+		Super.BeginPlay();
+		SpriteNum = 6;
+	}
+}

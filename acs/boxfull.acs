@@ -1,0 +1,9 @@
+//boxfull.acs
+
+#library "BOXPARTY"
+#include "zcommon.acs"
+
+script "glassrespawn" RESPAWN
+{
+	if (CheckInventory("PlayerGlassToken")) {GiveInventory("GlassProtection", 1);}
+}

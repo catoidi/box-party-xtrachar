@@ -1,0 +1,22 @@
+//zscript.zsc
+version "4.7"
+
+//to avoid potential conflicts with any mods that use zscript,
+//i renamed the zscript folder to zboxscript.
+
+#include "zboxscript/mixin_full.zsc"
+
+//player
+#include "zboxscript/player/trio.zsc"
+#include "zboxscript/player/prism.zsc"
+#include "zboxscript/player/glass.zsc"
+
+//loot
+//#include "zboxscript/loot/mixin.zsc"
+#include "zboxscript/loot/energy.zsc" //for prism
+
+//weapons
+#include "zboxscript/weapons/prismenergy.zsc"
+
+//ui
+#include "zboxscript/ui/hud_full.zsc"

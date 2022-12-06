@@ -1,0 +1,3 @@
+//$GZDB_Skip
+#include "zboxscript/mixin.zsc"
+#include "zboxscript/loot/mixin.zsc"

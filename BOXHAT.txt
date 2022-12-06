@@ -1,0 +1,3 @@
+Hat = HAT_SELECT_17, HAT_LOCKED_17, box_hat_unlock_17, HATAB2.png, HATBUTTON2B.png, HATLOCK2.png;
+Hat = HAT_SELECT_18, HAT_LOCKED_18, box_hat_unlock_18, HATAB3.png, HATBUTTON2C.png, HATLOCK2.png;
+Hat = HAT_SELECT_19, HAT_LOCKED_19, box_hat_unlock_19, HATAB4.png, HATBUTTON2D.png, HATLOCK2.png;

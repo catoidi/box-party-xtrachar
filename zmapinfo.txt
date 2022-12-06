@@ -1,0 +1,5 @@
+GameInfo
+{
+	AddPlayerClasses = "PlayerTrio", "PlayerPrism", "PlayerGlass"
+	StatusBarClass = "BoxPartyStatusBarFull"
+}

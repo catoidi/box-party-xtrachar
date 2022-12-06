@@ -1,0 +1,12 @@
+[enu default]
+HAT_SELECT_17 = "You have selected: Mini Trio";
+HAT_SELECT_18 = "You have selected: Mini Prism";
+HAT_SELECT_19 = "You have selected: Mini Glass";
+
+HAT_LOCKED_17 = "LOCKED: Complete Box Party Demo as Trio.";
+HAT_LOCKED_18 = "LOCKED: Complete Box Party Demo as Prism.";
+HAT_LOCKED_19 = "LOCKED: Complete Box Party Demo as Glass.";
+
+HAT_UNLOCK_17 = "Mini Trio";
+HAT_UNLOCK_18 = "Mini Prism";
+HAT_UNLOCK_19 = "Mini Glass";

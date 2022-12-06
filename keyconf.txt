@@ -1,0 +1,1 @@
+AddMenuKey    "Glass Dash Ability" "boxability"

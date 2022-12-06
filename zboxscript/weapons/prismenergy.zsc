@@ -1,0 +1,82 @@
+//zboxscript/weapons/prismenergy.zsc
+
+CLASS PrismWeapon : Weapon
+{
+	Default
+	{
+		Weapon.SelectionOrder 10000;
+		Weapon.Kickback 0;
+		Weapon.AmmoUse 160;
+		Weapon.AmmoGive 0;
+		Weapon.AmmoType "BoxEnergy";
+		DamageType "Prism";
+		Inventory.PickupMessage "$BOX_WEAPON_PRISM";
+		Obituary "$BOX_DIE_PRISM";
+		Tag "$BOX_TAG_PRISM";
+		+WEAPON.WIMPY_WEAPON;
+		+WEAPON.AMMO_OPTIONAL;
+		+INVENTORY.UNDROPPABLE;
+	}
+	
+	States //using glowstick sprites as placeholder for now.
+	{
+		Ready:
+			PRSW A 0 A_JumpIfInventory("BoxEnergy", 160, "ReadyGlow");
+			#### # 1 A_WeaponReady;
+			Loop;
+		ReadyGlow:
+			PRSW B 0 A_JumpIfInventory("BoxEnergy", 160, 2);
+			#### # 0 A_Jump(256, "Ready");
+			#### # 1 A_WeaponReady;
+			Loop;
+		Fire:
+			#### # 0;
+			#### # 0 A_JumpIfInventory("BoxEnergy", 160, 2);
+			#### # 0 A_Jump(256, "Failure");
+			#### CCCCCCCCCCCCCCCCCC 2 BRIGHT A_WeaponOffset(random(-3, 3), random(17, 23), WOF_INTERPOLATE);
+			#### D 0 BRIGHT A_SpawnItemEX("PrismSlam", 0, 0, 24, 0, 0, 0, 0, SXF_NOCHECKPOSITION);
+			#### D 0 BRIGHT A_Explode(200, 512, XF_NOTMISSILE | XF_EXPLICITDAMAGETYPE, true, 200, damagetype: "Prism");
+			#### DDDD 0 BRIGHT A_SpawnItemEX("PureHealth", 0, 0, 0, random(-8, 8), random(-8, 8), random(0, 16), random(0, 359), SXF_NOCHECKPOSITION);
+			#### D 4 BRIGHT A_TakeInventory("BoxEnergy");
+			#### EFG 4 BRIGHT;
+			Goto Ready;
+		Failure:
+			#### # 0 ACS_NamedExecute("noammo", 0, 0, 0, 0);
+			#### HAHA 4;
+			Goto Ready;
+		Deselect:
+			#### AAA 0 A_Lower;
+			#### A 1 A_Lower;
+			Loop;
+		Select:
+			PRSW AAA 0 A_Raise;
+			#### A 1 A_Raise;
+			Loop;
+		Spawn:
+			TNT1 A -1;
+			Stop;
+	}
+}
+
+CLASS PrismSlam : HammerSlam
+{
+	Default
+	{
+		Scale 2.0;
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay A_SetRoll(random(0, 359));
+			PRSW I 0 BRIGHT A_BoxParticle("b7 7a ce", 16, 24, 70);
+			PRSW I 0 BRIGHT A_QuakeEX(4, 4, 4, 70, 0, 512, 0);
+			Goto Looper;
+		Looper:
+			#### # 1 BRIGHT {
+				A_BoxScale(0.1);
+				A_FadeOut(0.025);
+			}
+			Loop;
+	}
+}
